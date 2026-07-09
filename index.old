@@ -15,17 +15,7 @@
 <nav id="menu"></nav>
 <main>
 <section id="oversikt" class="panel active">
- <div class="hero"><h1 class="big">MiniVet demo</h1><p>Dette er en presentasjonsdemo av hovedfunksjonene i veterinærappen. Den bruker demodata og gjør ingen ekte endringer.</p><button class="btn green" onclick="go('sysadm')">Start demo</button><button class="btn" onclick="toggleMore()">Mer</button></div>
-  <div class="box more-info" id="mer-info" style="display:none">
-   <h2>Mer</h2>
-   <p>Dette er en pilot som er kostnadsfri i én måned.</p>
-   <p>Løsningen er ment som en mobil app og kan i framtiden integreres med andre journalsystem.</p>
-   <p>Prisen er 500 kr for tre brukere og 75 kr per ekstra bruker.</p>
-   <p>Alle som tester kan komme med endringsønsker og gjerne gi beskjed dersom noe er feil.</p>
-   <p>Dersom du ønsker å teste, send e-post til <a href="mailto:greknuts@online.no?subject=rettilomma%20veterinaer">greknuts@online.no</a>.</p>
-   <a class="btn green" href="mailto:greknuts@online.no?subject=rettilomma%20veterinaer&body=Hei%20Anne%20Grethe%2C%0A%0AJeg%20%C3%B8nsker%20%C3%A5%20teste%20Rett%20i%20Lomma%20Veterin%C3%A6r.%0A%0AMvh%0A">Send e-post for test</a>
-  </div>
-
+ <div class="hero"><h1 class="big">MiniVet demo</h1><p>Dette er en presentasjonsdemo av hovedfunksjonene i veterinærappen. Den bruker demodata og gjør ingen ekte endringer.</p><button class="btn green" onclick="go('sysadm')">Start demo</button></div>
  <div class="cards">
   <div class="card"><h3>SYSADM</h3><p class="muted">Kjeder, klinikker, brukere, fakturaprofil, backup og restore.</p></div>
   <div class="card"><h3>Klinikkdrift</h3><p class="muted">Dyreeiere, dyr, journal, behandling, lager og biler.</p></div>
@@ -49,7 +39,6 @@ const pages=[['oversikt','Oversikt'],['login','Innlogging'],['sysadm','SYSADM'],
 const menu=document.getElementById('menu');
 pages.forEach(([id,name])=>{const b=document.createElement('button');b.textContent=name;b.onclick=()=>go(id);b.id='nav_'+id;menu.appendChild(b)});
 function go(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));document.getElementById('nav_'+id).classList.add('active');scrollTo(0,0)}
-function toggleMore(){const box=document.getElementById('mer-info');box.style.display=box.style.display==='none'||box.style.display===''?'block':'none';}
 go('oversikt');
 </script>
 </body>
