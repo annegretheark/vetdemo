@@ -7,6 +7,15 @@
 <style>
 :root{--bg:#0b1110;--card:#151b1a;--card2:#1d2524;--line:#33413f;--text:#eef7f6;--muted:#a9bebc;--blue:#1f6feb;--green:#19b394;--red:#c0392b;--gold:#f2c94c}
 *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif} header{padding:18px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:#101615;position:sticky;top:0;z-index:5} .logo{font-size:24px;font-weight:800}.logo span{color:var(--green)} .wrap{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 70px)} nav{border-right:1px solid var(--line);padding:16px;background:#0f1514} nav button{width:100%;text-align:left;margin:4px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:#17201f;color:var(--text);cursor:pointer;font-size:15px} nav button.active,nav button:hover{background:var(--blue)} main{padding:24px;max-width:1200px}.panel{display:none}.panel.active{display:block}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 10px 20px #0004}.card h3{margin:0 0 8px}.muted{color:var(--muted)} .btn{display:inline-block;padding:10px 14px;border-radius:9px;background:var(--blue);color:white;border:0;margin:4px 4px 4px 0}.btn.green{background:var(--green)}.btn.red{background:var(--red)}.btn.gray{background:#4b5563}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.box{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0} input,select,textarea{width:100%;padding:11px;border-radius:9px;border:1px solid var(--line);background:#0f1514;color:var(--text);margin:6px 0 12px} table{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden} th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left} th{background:#1b2524}.pill{padding:4px 8px;border-radius:999px;background:#243331;color:#c6ffef;font-size:12px}.hero{padding:26px;background:linear-gradient(135deg,#12211f,#142a3f);border:1px solid var(--line);border-radius:18px;margin-bottom:18px}.big{font-size:34px;margin:0 0 8px}.preview{background:white;color:#111;border-radius:10px;padding:20px;min-height:320px}.preview h2{color:#0a3552}.line{border-top:3px solid #19b394;margin:12px 0}.footerline{border-top:1px solid #ddd;margin-top:40px;padding-top:10px;font-size:12px}.ok{color:#7fffd4}.warn{color:#ffd166}@media(max-width:800px){.wrap{grid-template-columns:1fr}nav{border-right:0}.grid2{grid-template-columns:1fr}}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
+.photo-card{position:relative;overflow:hidden;border-radius:14px;border:1px solid var(--line);background:var(--card);min-height:210px;box-shadow:0 10px 20px #0004}
+.photo-card img{width:100%;height:210px;object-fit:cover;display:block;transition:transform .25s ease}
+.photo-card:hover img{transform:scale(1.04)}
+.photo-caption{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.86));color:white}
+.photo-caption strong{display:block;font-size:17px;margin-bottom:3px}
+.photo-caption span{font-size:13px;color:#d8e7e5}
+
 </style>
 </head>
 <body>
@@ -26,7 +35,31 @@
    <a class="btn green" href="mailto:salg@rettilomma.com?subject=rettilomma%20veterinaer&body=Hei%20Anne%20Grethe%2C%0A%0AJeg%20%C3%B8nsker%20%C3%A5%20teste%20Rett%20i%20Lomma%20Veterin%C3%A6r.%0A%0AMvh%0A">Send e-post for test</a>
   </div>
 
- <div class="cards">
+ 
+<div class="box">
+  <h2>Dyr og behandlinger</h2>
+  <p class="muted">Eksempler på pasienter, undersøkelser og behandlinger i veterinærtjenesten.</p>
+  <div class="gallery">
+    <div class="photo-card">
+      <img src="https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Katt som veterinærpasient" loading="lazy">
+      <div class="photo-caption"><strong>Katt</strong><span>Helsekontroll og oppfølging</span></div>
+    </div>
+    <div class="photo-card">
+      <img src="https://images.pexels.com/photos/6235119/pexels-photo-6235119.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Veterinær undersøker hund" loading="lazy">
+      <div class="photo-caption"><strong>Klinisk undersøkelse</strong><span>Trygg og grundig kontroll av hund</span></div>
+    </div>
+    <div class="photo-card">
+      <img src="https://images.pexels.com/photos/7008099/pexels-photo-7008099.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Veterinær behandler hund" loading="lazy">
+      <div class="photo-caption"><strong>Sårstell</strong><span>Behandling og bandasjering</span></div>
+    </div>
+    <div class="photo-card">
+      <img src="https://images.pexels.com/photos/6235241/pexels-photo-6235241.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Veterinær gjennomfører helsekontroll på hund" loading="lazy">
+      <div class="photo-caption"><strong>Helsekontroll</strong><span>Undersøkelse med stetoskop</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="cards">
   <div class="card"><h3>SYSADM</h3><p class="muted">Kjeder, klinikker, brukere, fakturaprofil, backup og restore.</p></div>
   <div class="card"><h3>Klinikkdrift</h3><p class="muted">Dyreeiere, dyr, journal, behandling, lager og biler.</p></div>
   <div class="card"><h3>Fakturering</h3><p class="muted">Rett i Lomma som global fakturaavsender med logo og brevhode.</p></div>
