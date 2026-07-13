@@ -22,15 +22,15 @@
    <p>Løsningen er ment som en mobil app og kan i framtiden integreres med andre journalsystem.</p>
    <p>Prisen er 500 kr for tre brukere og 75 kr per ekstra bruker.</p>
    <p>Alle som tester kan komme med endringsønsker og gjerne gi beskjed dersom noe er feil.</p>
-   <p>Dersom du ønsker å teste, send e-post til <a href="mailto:salg@rettilomma.com?subject=rettilomma%20veterinaer">greknuts@online.no</a>.</p>
-   <a class="btn green" href="mailto:salg@rettilomma.com?subject=rettilomma%20veterinaer&body=Hei%20Anne%20Grethe%2C%0A%0AJeg%20%C3%B8nsker%20%C3%A5%20teste%20Rett%20i%20Lomma%20Veterin%C3%A6r.%0A%0AMvh%0A">Send e-post for test</a>
+   <p>Dersom du ønsker å teste, send e-post til <a href="mailto:greknuts@online.no?subject=rettilomma%20veterinaer">greknuts@online.no</a>.</p>
+   <a class="btn green" href="mailto:greknuts@online.no?subject=rettilomma%20veterinaer&body=Hei%20Anne%20Grethe%2C%0A%0AJeg%20%C3%B8nsker%20%C3%A5%20teste%20Rett%20i%20Lomma%20Veterin%C3%A6r.%0A%0AMvh%0A">Send e-post for test</a>
   </div>
 
  <div class="cards">
   <div class="card"><h3>SYSADM</h3><p class="muted">Kjeder, klinikker, brukere, fakturaprofil, backup og restore.</p></div>
   <div class="card"><h3>Klinikkdrift</h3><p class="muted">Dyreeiere, dyr, journal, behandling, lager og biler.</p></div>
   <div class="card"><h3>Fakturering</h3><p class="muted">Rett i Lomma som global fakturaavsender med logo og brevhode.</p></div>
-  <div class="card"><h3>🔒 Sikkerhet</h3><p class="muted">Rollebasert tilgang for SYSADM, kjedeadmin, klinikkadmin og veterinær.</p><button class="btn green" onclick="go('sikkerhet')">Les mer</button><div style="margin-top:10px;font-size:14px;line-height:1.6"><div>🇸🇪 Data lagres i Skandinavia</div><div>👆 Mulighet for biometrisk innlogging</div><div>🛡️ Framtidig støtte for tofaktorautentisering (2FA)</div><div>⏱️ Automatisk utlogging ved inaktivitet</div><div>📋 Logging av alle journalåpninger</div></div></div>
+  <div class="card"><h3>Sikkerhet</h3><p class="muted">Rollebasert tilgang for SYSADM, kjedeadmin, klinikkadmin og veterinær.</p></div>
  </div>
 </section>
 <section id="login" class="panel"><h1>Innlogging</h1><div class="grid2"><div class="box"><label>E-post</label><input value="greknuts@online.no"><label>Passord</label><input type="password" value="demo"><button class="btn green" onclick="go('sysadm')">Logg inn som SYSADM</button><button class="btn gray">Glemt passord</button></div><div class="box"><h3>Roller</h3><p><span class="pill">SYSADM</span> Alt systemoppsett</p><p><span class="pill">Kjedeadmin</span> Egen kjede</p><p><span class="pill">Klinikkadmin</span> Egen klinikk</p><p><span class="pill">Veterinær</span> Pasient og journal</p></div></div></section>
