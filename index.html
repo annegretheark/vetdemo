@@ -174,6 +174,20 @@ html{scroll-behavior:smooth}body{min-width:0;overflow-x:hidden}img{max-width:100
 <section id="sikkerhet" class="panel"><h1>Sikkerhet og personvern</h1><div class="cards"><div class="card"><h3>Tilgang</h3><p><strong>SYSADM:</strong> Administrerer system, brukere, lisenser, backup og teknisk drift. Har <strong>ikke</strong> tilgang til pasientjournaler eller personopplysninger.<br><strong>Kjedeadministrator:</strong> Administrerer klinikker og brukere i egen kjede.<br><strong>Klinikkadministrator:</strong> Administrerer egen klinikk og ansatte.<br><strong>Veterinær:</strong> Har tilgang til pasienter og journaler ved egen klinikk basert på rolle og arbeidsoppgaver.</p></div><div class="card"><h3>Journal-logg</h3><p>Åpning av journal kan logges med bruker og tidspunkt.</p></div><div class="card"><h3>Backup</h3><p>Kryptert backup administreres av SYSADM. Innholdet i pasientjournaler er ikke tilgjengelig for SYSADM uten en særskilt autorisert gjenopprettingsprosess.</p></div><div class="card"><h3>GDPR</h3><p>Løsningen følger kravene i GDPR. Personopplysninger behandles sikkert, data lagres i Skandinavia, og all tilgang til journaler kan loggføres.</p></div></div></section>
 </main></div>
 <script>
+const APP_VERSION='vet-mobile-v2-20260714';
+(async()=>{
+  try{
+    if('serviceWorker' in navigator){
+      const regs=await navigator.serviceWorker.getRegistrations();
+      await Promise.all(regs.map(r=>r.unregister()));
+    }
+    if('caches' in window){
+      const keys=await caches.keys();
+      await Promise.all(keys.map(k=>caches.delete(k)));
+    }
+  }catch(e){}
+  try{localStorage.setItem('vet-app-version',APP_VERSION)}catch(e){}
+})();
 const pages=[['oversikt','Hjem'],['pasient','Pasienter'],['journal','Journal'],['faktura','Faktura'],['lager','Lager'],['sikkerhet','Sikkerhet']];
 const menu=document.getElementById('menu');
 const mobileQuery=window.matchMedia('(max-width:1100px)');
@@ -201,5 +215,7 @@ function toggleTreatment(id){
 const initialPage=['pasient','journal','faktura','lager','sikkerhet'].includes(location.hash.slice(1))?location.hash.slice(1):'oversikt';
 go(initialPage);
 </script>
+
+<div id="build-version" aria-label="Versjon" style="position:fixed;right:8px;bottom:8px;z-index:9999;padding:5px 8px;border-radius:999px;background:#101615e8;border:1px solid #33413f;color:#a9bebc;font:600 11px/1 Arial,sans-serif;box-shadow:0 3px 12px #0006">Veterinær Mobil V2</div>
 </body>
 </html>
