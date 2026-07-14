@@ -1,0 +1,3 @@
+MiniVet mobil V2 - 2026-07-14
+Breakpoint: 1100px
+HTML cache: disabled
