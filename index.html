@@ -2,7 +2,10 @@
 <html lang="no">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101615">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://images.pexels.com" crossorigin>
 <title>MiniVet Demo - Rett i Lomma Veterinaer</title>
 <style>
 :root{--bg:#0b1110;--card:#151b1a;--card2:#1d2524;--line:#33413f;--text:#eef7f6;--muted:#a9bebc;--blue:#1f6feb;--green:#19b394;--red:#c0392b;--gold:#f2c94c}
@@ -25,6 +28,27 @@
 
 
 .history-item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px;margin-top:10px;border:1px solid var(--line);border-radius:11px;background:var(--card);cursor:pointer}.history-item:hover{border-color:var(--blue);background:#182625}.history-details{padding:14px;border:1px solid var(--line);border-top:0;border-radius:0 0 11px 11px;background:#101817}.treatment-view{margin-top:14px}
+
+/* Mobile-first usability and performance */
+html{scroll-behavior:smooth}body{min-width:0}button,input,select,textarea{font:inherit}.panel{content-visibility:auto;contain-intrinsic-size:700px}.panel.active{content-visibility:visible}.card,.box,.photo-card{contain:layout paint}.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px}img{max-width:100%}
+@media(max-width:800px){
+  header{padding:12px 14px;gap:10px;align-items:flex-start}.logo{font-size:19px;line-height:1.15}header>.muted{font-size:12px;white-space:nowrap}
+  .wrap{display:block;min-height:0}
+  nav{position:sticky;top:61px;z-index:4;display:flex;gap:8px;overflow-x:auto;overscroll-behavior-x:contain;padding:10px 12px;border:0;border-bottom:1px solid var(--line);background:#0f1514;scrollbar-width:none}
+  nav::-webkit-scrollbar{display:none}nav button{flex:0 0 auto;width:auto;min-height:44px;margin:0;padding:10px 14px;white-space:nowrap;text-align:center;border-radius:999px}
+  nav button.active{order:-1;box-shadow:0 0 0 2px #73b3ff inset}
+  main{max-width:none;padding:14px 12px 32px}
+  .panel>h1{position:sticky;top:123px;z-index:3;margin:0 -12px 14px;padding:12px 14px;background:linear-gradient(180deg,#0b1110 75%,transparent)}
+  .hero{padding:20px 16px;border-radius:14px}.big{font-size:28px}.cards{grid-template-columns:1fr;gap:12px}.grid2{grid-template-columns:1fr;gap:12px}.card,.box{padding:14px;border-radius:12px}
+  .btn{min-height:44px;padding:11px 14px}.box>.btn,.card>.btn{max-width:100%}
+  input,select,textarea{font-size:16px;min-height:44px}
+  table{min-width:560px}th,td{padding:10px 9px;font-size:14px}
+  .preview{padding:14px;min-height:0;overflow-x:auto}.gallery{grid-template-columns:1fr}.photo-card,.photo-card img{min-height:190px;height:190px}.animal-photo{height:190px}.journal-photo img{height:auto;max-height:300px}
+  .history-item{align-items:flex-start;padding:13px}.history-item>span{white-space:nowrap}
+}
+@media(max-width:420px){header>.muted{display:none}nav{top:51px}.panel>h1{top:113px}.big{font-size:25px}.hero .btn{width:100%;margin-right:0}.box>.btn{width:100%;margin-right:0}.logo{font-size:18px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -55,11 +79,11 @@
 <section id="login" class="panel"><h1>Innlogging</h1><div class="grid2"><div class="box"><label>E-post</label><input value="greknuts@online.no"><label>Passord</label><input type="password" value="demo"><button class="btn green" onclick="go('sysadm')">Logg inn som SYSADM</button><button class="btn gray">Glemt passord</button></div><div class="box"><h3>Roller</h3><p><span class="pill">SYSADM</span> Alt systemoppsett</p><p><span class="pill">Kjedeadmin</span> Egen kjede</p><p><span class="pill">Klinikkadmin</span> Egen klinikk</p><p><span class="pill">Veterinær</span> Pasient og journal</p></div></div></section>
 <section id="sysadm" class="panel"><h1>SYSADM</h1><div class="cards"><div class="card"><h3>Oppsett</h3><p>Kjeder, klinikker og brukere.</p><button class="btn" onclick="go('klinikker')">Åpne</button></div><div class="card"><h3>Backup / restore</h3><p>Backup av alle klinikker og restore av én klinikk.</p><button class="btn" onclick="go('backup')">Åpne</button></div><div class="card"><h3>Rett i Lomma fakturaprofil</h3><p>Global logo, brevhode, bunntekst og betaling.</p><button class="btn" onclick="go('profil')">Åpne</button></div><div class="card"><h3>Fakturaoversikt</h3><p>Se fakturaer for veterinærtjenesten.</p><button class="btn" onclick="go('faktura')">Åpne</button></div></div></section>
 <section id="klinikker" class="panel"><h1>Kjeder, klinikker og brukere</h1><div class="box"><button class="btn green">Ny kjede</button><button class="btn green">Ny klinikk</button><button class="btn green">Ny bruker</button></div><table><tr><th>Klinikk</th><th>Kjede</th><th>Admin</th><th>Status</th></tr><tr><td>MiniVet</td><td>SortVet</td><td>greknuts@online.no</td><td><span class="pill">Aktiv</span></td></tr><tr><td>TESTKLINIKK 1</td><td>Rett i Lomma Testkjede</td><td>testvet1_1@rettilomma.test</td><td><span class="pill">Aktiv</span></td></tr><tr><td>Under Klinikk1</td><td>SortVet</td><td>hanne@larsen.no</td><td><span class="pill">Aktiv</span></td></tr></table></section>
-<section id="pasient" class="panel"><h1>Dyreeiere og dyr</h1><div class="box"><button class="btn green">Ny dyreeier</button><button class="btn green">Nytt dyr</button><button class="btn gray">Oppdater</button><p class="muted">Dyr kan identifiseres med bilde i journalen. Bildet gjør det enklere å kjenne igjen riktig pasient og gir tryggere dokumentasjon.</p></div><div class="cards"><div class="card"><img class="animal-photo" src="https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Scott, collie"><h3>Hilde Jensen</h3><p class="muted">hild@post.no</p><p>Scott - Collie<br>Pus - Skogskatt</p><button class="btn" onclick="go('journal')">Åpne journal</button></div><div class="card"><img class="animal-photo" src="https://images.pexels.com/photos/110820/pexels-photo-110820.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Trulte, gris"><h3>Nina Pors</h3><p class="muted">salg@rettilomma.com</p><p>Trulte - Gris</p><button class="btn" onclick="go('journal')">Åpne journal</button></div><div class="card"><img class="animal-photo" src="https://images.pexels.com/photos/1996333/pexels-photo-1996333.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Hest i pasientoversikt"><h3>Reidunn Vist</h3><p class="muted">support@rettilomma.com</p><p>Slogum Jan - Hest<br>Aya - Hest</p><button class="btn" onclick="go('journal')">Åpne journal</button></div></div></section>
+<section id="pasient" class="panel"><h1>Dyreeiere og dyr</h1><div class="box"><button class="btn green">Ny dyreeier</button><button class="btn green">Nytt dyr</button><button class="btn gray">Oppdater</button><p class="muted">Dyr kan identifiseres med bilde i journalen. Bildet gjør det enklere å kjenne igjen riktig pasient og gir tryggere dokumentasjon.</p></div><div class="cards"><div class="card"><img class="animal-photo" loading="lazy" decoding="async" src="https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Scott, collie"><h3>Hilde Jensen</h3><p class="muted">hild@post.no</p><p>Scott - Collie<br>Pus - Skogskatt</p><button class="btn" onclick="go('journal')">Åpne journal</button></div><div class="card"><img class="animal-photo" loading="lazy" decoding="async" src="https://images.pexels.com/photos/110820/pexels-photo-110820.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Trulte, gris"><h3>Nina Pors</h3><p class="muted">salg@rettilomma.com</p><p>Trulte - Gris</p><button class="btn" onclick="go('journal')">Åpne journal</button></div><div class="card"><img class="animal-photo" loading="lazy" decoding="async" src="https://images.pexels.com/photos/1996333/pexels-photo-1996333.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Hest i pasientoversikt"><h3>Reidunn Vist</h3><p class="muted">support@rettilomma.com</p><p>Slogum Jan - Hest<br>Aya - Hest</p><button class="btn" onclick="go('journal')">Åpne journal</button></div></div></section>
 <section id="journal" class="panel">
 <h1>Journal</h1>
 <div class="box">
-  <img class="animal-photo" src="https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Scott, collie">
+  <img class="animal-photo" loading="lazy" decoding="async" src="https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Scott, collie">
   <h3>Scott</h3>
   <p>Dyreeier: Hilde Jensen</p>
   <p class="muted">Velg om du vil registrere en ny behandling eller se tidligere behandlinger.</p>
@@ -78,7 +102,7 @@
       <button class="btn" type="button" onclick="document.getElementById('journal-image-input').click()">📷 Legg til nytt bilde</button>
       <input id="journal-image-input" type="file" accept="image/*" style="display:none" onchange="showJournalImage(event)">
       <div id="journal-image-preview" style="display:none;margin-top:12px" class="journal-photo">
-        <img id="journal-preview-img" alt="Nytt journalbilde">
+        <img id="journal-preview-img" decoding="async" alt="Nytt journalbilde">
         <strong>Nytt bilde valgt</strong>
         <p id="journal-preview-name" class="muted"></p>
       </div>
@@ -104,7 +128,7 @@
     </div>
     <div id="treatment-1" class="history-details" style="display:none">
       <p><strong>Journalnotat:</strong> Klinisk undersøkelse utført. Normal allmenntilstand. Videre oppfølging avtalt.</p>
-      <div class="journal-photo-grid"><div class="journal-photo"><img src="https://images.pexels.com/photos/6235233/pexels-photo-6235233.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Bilde fra konsultasjon"><strong>Bilde fra behandlingen</strong></div></div>
+      <div class="journal-photo-grid"><div class="journal-photo"><img loading="lazy" decoding="async" src="https://images.pexels.com/photos/6235233/pexels-photo-6235233.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Bilde fra konsultasjon"><strong>Bilde fra behandlingen</strong></div></div>
     </div>
     <div class="history-item" onclick="toggleTreatment('treatment-2')">
       <div><strong>01.07.2026 – Vaksine</strong><br><span class="muted">780 kr</span></div><span>Åpne ▾</span>
@@ -125,10 +149,11 @@
 <script>
 const pages=[['oversikt','Oversikt'],['login','Innlogging'],['sysadm','SYSADM'],['klinikker','Klinikker og brukere'],['pasient','Dyreeiere og dyr'],['journal','Journal'],['lager','Lager og biler'],['faktura','Faktura'],['backup','Backup / restore'],['profil','Rett i Lomma profil'],['sikkerhet','Sikkerhet']];
 const menu=document.getElementById('menu');
+document.querySelectorAll('table').forEach(table=>{if(!table.parentElement.classList.contains('table-scroll')){const wrap=document.createElement('div');wrap.className='table-scroll';table.parentNode.insertBefore(wrap,table);wrap.appendChild(table)}});
 pages.forEach(([id,name])=>{const b=document.createElement('button');b.textContent=name;b.onclick=()=>go(id);b.id='nav_'+id;menu.appendChild(b)});
-function go(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));document.getElementById('nav_'+id).classList.add('active');scrollTo(0,0)}
+function go(id){document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.id==='nav_'+id));const active=document.getElementById('nav_'+id);active?.scrollIntoView({behavior:'auto',block:'nearest',inline:'center'});scrollTo({top:0,behavior:'auto'})}
 function toggleMore(){const box=document.getElementById('mer-info');box.style.display=box.style.display==='none'||box.style.display===''?'block':'none';}
-function showJournalImage(event){const file=event.target.files&&event.target.files[0];if(!file)return;const img=document.getElementById('journal-preview-img');const wrap=document.getElementById('journal-image-preview');const name=document.getElementById('journal-preview-name');img.src=URL.createObjectURL(file);name.textContent=file.name;wrap.style.display='block';}
+function showJournalImage(event){const file=event.target.files&&event.target.files[0];if(!file)return;const img=document.getElementById('journal-preview-img');const wrap=document.getElementById('journal-image-preview');const name=document.getElementById('journal-preview-name');if(img.dataset.objectUrl)URL.revokeObjectURL(img.dataset.objectUrl);const objectUrl=URL.createObjectURL(file);img.src=objectUrl;img.dataset.objectUrl=objectUrl;name.textContent=file.name;wrap.style.display='block';}
 
 function showTreatmentView(view){
   const newView=document.getElementById('new-treatment-view');
