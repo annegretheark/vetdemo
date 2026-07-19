@@ -1,221 +1,148 @@
 <!doctype html>
-<html lang="no">
+<html lang="nb">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#101615">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<link rel="preconnect" href="https://images.pexels.com" crossorigin>
-<link rel="dns-prefetch" href="//images.pexels.com">
-<title>MiniVet Demo - Rett i Lomma Veterinaer</title>
-<style>
-:root{--bg:#0b1110;--card:#151b1a;--card2:#1d2524;--line:#33413f;--text:#eef7f6;--muted:#a9bebc;--blue:#1f6feb;--green:#19b394;--red:#c0392b;--gold:#f2c94c}
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif} header{padding:18px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:#101615;position:sticky;top:0;z-index:5} .logo{font-size:24px;font-weight:800}.logo span{color:var(--green)} .wrap{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 70px)} nav{border-right:1px solid var(--line);padding:16px;background:#0f1514} nav button{width:100%;text-align:left;margin:4px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:#17201f;color:var(--text);cursor:pointer;font-size:15px} nav button.active,nav button:hover{background:var(--blue)} main{padding:24px;max-width:1200px}.panel{display:none}.panel.active{display:block}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 10px 20px #0004}.card h3{margin:0 0 8px}.muted{color:var(--muted)} .btn{display:inline-block;padding:10px 14px;border-radius:9px;background:var(--blue);color:white;border:0;margin:4px 4px 4px 0}.btn.green{background:var(--green)}.btn.red{background:var(--red)}.btn.gray{background:#4b5563}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.box{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0} input,select,textarea{width:100%;padding:11px;border-radius:9px;border:1px solid var(--line);background:#0f1514;color:var(--text);margin:6px 0 12px} table{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden} th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left} th{background:#1b2524}.pill{padding:4px 8px;border-radius:999px;background:#243331;color:#c6ffef;font-size:12px}.hero{padding:26px;background:linear-gradient(135deg,#12211f,#142a3f);border:1px solid var(--line);border-radius:18px;margin-bottom:18px}.big{font-size:34px;margin:0 0 8px}.preview{background:white;color:#111;border-radius:10px;padding:20px;min-height:320px}.preview h2{color:#0a3552}.line{border-top:3px solid #19b394;margin:12px 0}.footerline{border-top:1px solid #ddd;margin-top:40px;padding-top:10px;font-size:12px}.ok{color:#7fffd4}.warn{color:#ffd166}@media(max-width:800px){.wrap{grid-template-columns:1fr}nav{border-right:0}.grid2{grid-template-columns:1fr}}
-
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
-.photo-card{position:relative;overflow:hidden;border-radius:14px;border:1px solid var(--line);background:var(--card);min-height:210px;box-shadow:0 10px 20px #0004}
-.photo-card img{width:100%;height:210px;object-fit:cover;display:block;transition:transform .25s ease}
-.photo-card:hover img{transform:scale(1.04)}
-.photo-caption{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.86));color:white}
-.photo-caption strong{display:block;font-size:17px;margin-bottom:3px}
-.photo-caption span{font-size:13px;color:#d8e7e5}
-
-
-.animal-photo{width:100%;height:150px;object-fit:cover;border-radius:10px;margin-bottom:10px;border:1px solid var(--line)}
-.journal-photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
-.journal-photo{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}
-.journal-photo img{width:100%;height:180px;object-fit:cover;border-radius:9px;display:block;margin-bottom:8px}
-@media(max-width:700px){.journal-photo-grid{grid-template-columns:1fr}}
-
-
-.history-item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px;margin-top:10px;border:1px solid var(--line);border-radius:11px;background:var(--card);cursor:pointer}.history-item:hover{border-color:var(--blue);background:#182625}.history-details{padding:14px;border:1px solid var(--line);border-top:0;border-radius:0 0 11px 11px;background:#101817}.treatment-view{margin-top:14px}
-
-/* MOBIL V2 – robust på telefon og nettbrett */
-html{scroll-behavior:smooth}body{min-width:0;overflow-x:hidden}img{max-width:100%}.panel{content-visibility:auto;contain-intrinsic-size:650px}.panel.active{content-visibility:visible}.table-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px}
-.mobile-current{display:none}
-@media (max-width:1100px){
-  header{position:sticky;top:0;padding:10px 12px;min-height:54px;z-index:20}.logo{font-size:18px;line-height:1.1}header>.muted{display:none}
-  .wrap{display:block;min-height:0}
-  nav{position:sticky;top:54px;z-index:19;display:flex!important;gap:8px;width:100%;padding:9px 10px;border:0;border-bottom:1px solid var(--line);overflow-x:auto;overscroll-behavior-x:contain;background:#0f1514;scrollbar-width:none}
-  nav::-webkit-scrollbar{display:none}
-  nav button{display:block!important;flex:0 0 auto;width:auto!important;min-width:max-content;min-height:44px;margin:0!important;padding:10px 14px!important;border-radius:999px!important;text-align:center!important;white-space:nowrap;font-size:14px}
-  nav button.active{order:-1;background:var(--blue)!important;box-shadow:0 0 0 2px rgba(255,255,255,.28) inset}
-  main{width:100%;max-width:none!important;padding:12px 10px 34px!important}
-  .panel{width:100%;min-width:0}.panel.active{display:block!important}
-  .panel>h1{margin:0 0 12px;font-size:25px;line-height:1.15}
-  .hero{padding:18px 14px;margin-bottom:12px;border-radius:14px}.big{font-size:27px}
-  .cards,.grid2,.gallery,.journal-photo-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
-  .card,.box{min-width:0;padding:14px;border-radius:12px;margin:10px 0}
-  .btn{min-height:46px;padding:12px 14px;touch-action:manipulation}
-  input,select,textarea{min-height:46px;font-size:16px}
-  table{min-width:620px}th,td{padding:10px 8px;font-size:14px}
-  .preview{min-width:0;min-height:0;padding:14px;overflow-x:auto}
-  .animal-photo{height:auto;max-height:260px;aspect-ratio:16/9}.journal-photo img{height:auto;max-height:320px}
-  .history-item{align-items:flex-start;padding:13px}.history-item>span{white-space:nowrap}
-}
-@media (max-width:520px){
-  nav{top:54px}.hero .btn,.box>.btn,.card>.btn{width:100%;margin:4px 0}.big{font-size:24px}.panel>h1{font-size:23px}
-  main{padding-left:9px!important;padding-right:9px!important}.card,.box{padding:12px}
-}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-
-/* Salgsfokus: journal og daglig klinikkarbeid */
-.sales-hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:16px;align-items:stretch;margin-bottom:16px}
-.sales-copy{padding:26px;background:linear-gradient(135deg,#12211f,#143149);border:1px solid var(--line);border-radius:18px}
-.sales-copy h1{font-size:clamp(30px,5vw,48px);line-height:1.03;margin:0 0 12px}.sales-copy p{font-size:18px;line-height:1.55;max-width:760px}
-.sales-proof{display:grid;gap:10px}.sales-point{padding:15px;background:var(--card);border:1px solid var(--line);border-radius:14px}.sales-point strong{display:block;font-size:17px;margin-bottom:4px}
-.quick-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}.quick-actions .btn{display:flex;align-items:center;justify-content:center;text-align:center;margin:0;min-height:52px;font-weight:700}
-.section-kicker{color:var(--green);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:12px}.sales-card{border-color:#2b5d55}.sales-card h3{font-size:20px}.admin-link{opacity:.72;font-size:13px;margin-top:18px}.admin-link .btn{background:#374151}
-@media(max-width:1100px){.sales-hero{grid-template-columns:1fr}.sales-copy{padding:18px 15px}.sales-copy p{font-size:16px}.quick-actions{grid-template-columns:1fr}.sales-proof{grid-template-columns:1fr 1fr}.admin-link{margin-top:12px}}
-@media(max-width:620px){.sales-proof{grid-template-columns:1fr}.sales-copy h1{font-size:30px}.sales-copy{border-radius:14px}.sales-point{padding:13px}}
-
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' mailto:; img-src 'self' data:; script-src 'self'; style-src 'self'; font-src 'self' data:">
+  <title>Demo – Rett i Lomma Veterinær</title>
+  <meta name="description" content="Se hvordan Rett i Lomma samler feltarbeid, journal, lager, fakturagrunnlag, integrasjoner og dokumentasjon i én sikker arbeidsflyt.">
+  <link rel="stylesheet" href="css/demo.css?v=20260719-2">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#071511">
 </head>
 <body>
-<header><div class="logo">Rett <span>i</span> Lomma Veterinaer</div><div class="muted">Klikkbar demo</div></header>
-<div class="wrap">
-<nav id="menu"></nav>
-<main>
-<section id="oversikt" class="panel active">
-  <div class="sales-hero">
-    <div class="sales-copy">
-      <div class="section-kicker">Mobil veterinærjournal</div>
-      <h1>Journalen der jobben skjer</h1>
-      <p>Finn pasienten, dokumenter behandlingen med tekst og bilder, legg til varer og gjør fakturaen klar – i én enkel arbeidsflyt på mobil.</p>
-      <div class="quick-actions">
-        <button class="btn green" onclick="go('journal')">Åpne journal</button>
-        <button class="btn" onclick="go('pasient')">Finn pasient</button>
-        <button class="btn gray" onclick="go('faktura')">Se faktura</button>
+  <header class="demo-nav">
+    <a class="brand" href="index.html" aria-label="Rett i Lomma demo">
+      <span class="brand-mark">RL</span>
+      <span><strong>Rett i Lomma</strong><small>Veterinær</small></span>
+    </a>
+    <nav aria-label="Hovedmeny">
+      <a href="#arbeidsflyt">Arbeidsflyt</a>
+      <a href="#sikkerhet">Sikkerhet</a>
+      <a href="#integrasjoner">Integrasjoner</a>
+      <a class="nav-login" href="../veterinaer-login.html">Logg inn</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Veterinærarbeid – fra bilen, klinikken og kontoret</p>
+        <h1>Fra gårdsbesøk til faktura.<br><span>Én trygg arbeidsflyt.</span></h1>
+        <p class="hero-lead">Rett i Lomma samler kunde, GPS, pasient, journal, bilder, bil-lager og fakturagrunnlag – med sporbar tilgang og kontrollert innlesing fra tidligere system.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#arbeidsflyt">Start 3-minutters demo</a>
+          <a class="button ghost" href="mailto:annegrethe@rettilomma.com?subject=Mer%20informasjon%20eller%20pr%C3%B8ve%20Rett%20i%20Lomma%20Veterin%C3%A6r">Send e-post for mer info eller prøve</a>
+        </div>
+        <ul class="trust-row" aria-label="Viktige fordeler">
+          <li>Rollebasert tilgang</li>
+          <li>Journalspor og tilsynspakke</li>
+          <li>Trygg migrering</li>
+        </ul>
       </div>
-    </div>
-    <div class="sales-proof">
-      <div class="sales-point"><strong>📋 Raskere journalføring</strong><span class="muted">Ny behandling, notat, bilder og historikk samlet på ett sted.</span></div>
-      <div class="sales-point"><strong>📷 Bedre dokumentasjon</strong><span class="muted">Knytt bilder direkte til pasient og behandling.</span></div>
-      <div class="sales-point"><strong>💳 Fra behandling til faktura</strong><span class="muted">Varer og behandling følger samme arbeidsflyt.</span></div>
-      <div class="sales-point"><strong>📱 Laget for mobilen</strong><span class="muted">Store trykkflater og tydelig valgt funksjon ute i felt.</span></div>
-    </div>
-  </div>
-  <div class="cards">
-    <div class="card sales-card"><h3>Pasientoversikt</h3><p class="muted">Finn dyreeier og dyr raskt, med bilde som gjør det enklere å velge riktig pasient.</p><button class="btn green" onclick="go('pasient')">Se pasienter</button></div>
-    <div class="card sales-card"><h3>Komplett journal</h3><p class="muted">Se tidligere behandlinger, skriv nytt journalnotat og legg ved bilder mens du jobber.</p><button class="btn green" onclick="go('journal')">Se journalflyten</button></div>
-    <div class="card sales-card"><h3>Enklere oppgjør</h3><p class="muted">Gå fra utført behandling til fakturagrunnlag uten dobbeltarbeid.</p><button class="btn" onclick="go('faktura')">Se fakturering</button></div>
-    <div class="card"><h3>Trygg tilgang</h3><p class="muted">Rollebasert tilgang, journal-logg, sikker lagring og kontrollert backup.</p><button class="btn" onclick="go('sikkerhet')">Se sikkerhet</button></div>
-  </div>
-  <div class="admin-link"><span>Teknisk administrasjon er tilgjengelig, men holdes utenfor den vanlige arbeidsflyten.</span> <button class="btn" onclick="go('sysadm')">Administrasjon</button></div>
-</section>
-<section id="login" class="panel"><h1>Innlogging</h1><div class="grid2"><div class="box"><label>E-post</label><input value="greknuts@online.no"><label>Passord</label><input type="password" value="demo"><button class="btn green" onclick="go('sysadm')">Logg inn som SYSADM</button><button class="btn gray">Glemt passord</button></div><div class="box"><h3>Roller</h3><p><span class="pill">SYSADM</span> Alt systemoppsett</p><p><span class="pill">Kjedeadmin</span> Egen kjede</p><p><span class="pill">Klinikkadmin</span> Egen klinikk</p><p><span class="pill">Veterinær</span> Pasient og journal</p></div></div></section>
-<section id="sysadm" class="panel"><h1>SYSADM</h1><div class="cards"><div class="card"><h3>Oppsett</h3><p>Kjeder, klinikker og brukere.</p><button class="btn" onclick="go('klinikker')">Åpne</button></div><div class="card"><h3>Backup / restore</h3><p>Backup av alle klinikker og restore av én klinikk.</p><button class="btn" onclick="go('backup')">Åpne</button></div><div class="card"><h3>Rett i Lomma fakturaprofil</h3><p>Global logo, brevhode, bunntekst og betaling.</p><button class="btn" onclick="go('profil')">Åpne</button></div><div class="card"><h3>Fakturaoversikt</h3><p>Se fakturaer for veterinærtjenesten.</p><button class="btn" onclick="go('faktura')">Åpne</button></div></div></section>
-<section id="klinikker" class="panel"><h1>Kjeder, klinikker og brukere</h1><div class="box"><button class="btn green">Ny kjede</button><button class="btn green">Ny klinikk</button><button class="btn green">Ny bruker</button></div><table><tr><th>Klinikk</th><th>Kjede</th><th>Admin</th><th>Status</th></tr><tr><td>MiniVet</td><td>SortVet</td><td>greknuts@online.no</td><td><span class="pill">Aktiv</span></td></tr><tr><td>TESTKLINIKK 1</td><td>Rett i Lomma Testkjede</td><td>testvet1_1@rettilomma.test</td><td><span class="pill">Aktiv</span></td></tr><tr><td>Under Klinikk1</td><td>SortVet</td><td>hanne@larsen.no</td><td><span class="pill">Aktiv</span></td></tr></table></section>
-<section id="pasient" class="panel"><h1>Dyreeiere og dyr</h1><div class="box"><button class="btn green">Ny dyreeier</button><button class="btn green">Nytt dyr</button><button class="btn gray">Oppdater</button><p class="muted">Dyr kan identifiseres med bilde i journalen. Bildet gjør det enklere å kjenne igjen riktig pasient og gir tryggere dokumentasjon.</p></div><div class="cards"><div class="card"><img loading="eager" fetchpriority="high" decoding="async" class="animal-photo" src="https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Scott, collie"><h3>Hilde Jensen</h3><p class="muted">hild@post.no</p><p>Scott - Collie<br>Pus - Skogskatt</p><button class="btn" onclick="go('journal')">Åpne journal</button></div><div class="card"><img loading="lazy" decoding="async" class="animal-photo" src="https://images.pexels.com/photos/110820/pexels-photo-110820.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Trulte, gris"><h3>Nina Pors</h3><p class="muted">salg@rettilomma.com</p><p>Trulte - Gris</p><button class="btn" onclick="go('journal')">Åpne journal</button></div><div class="card"><img loading="lazy" decoding="async" class="animal-photo" src="https://images.pexels.com/photos/1996333/pexels-photo-1996333.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Hest i pasientoversikt"><h3>Reidunn Vist</h3><p class="muted">support@rettilomma.com</p><p>Slogum Jan - Hest<br>Aya - Hest</p><button class="btn" onclick="go('journal')">Åpne journal</button></div></div></section>
-<section id="journal" class="panel">
-<h1>Journal</h1>
-<div class="box">
-  <img loading="lazy" decoding="async" class="animal-photo" src="https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Scott, collie">
-  <h3>Scott</h3>
-  <p>Dyreeier: Hilde Jensen</p>
-  <p class="muted">Velg om du vil registrere en ny behandling eller se tidligere behandlinger.</p>
-  <button class="btn green" type="button" onclick="showTreatmentView('new')">+ Ny behandling</button>
-  <button class="btn" type="button" onclick="showTreatmentView('history')">Tidligere behandlinger</button>
-</div>
 
-<div id="new-treatment-view" class="treatment-view" style="display:none">
-  <div class="grid2">
-    <div class="box">
-      <h2>Ny behandling</h2>
-      <label>Type behandling</label>
-      <select><option>Konsultasjon standard</option><option>Vaksine hund</option><option>Sårstell</option></select>
-      <label>Journalnotat</label>
-      <textarea rows="8" placeholder="Skriv journalnotat..."></textarea>
-      <button class="btn" type="button" onclick="document.getElementById('journal-image-input').click()">📷 Legg til nytt bilde</button>
-      <input id="journal-image-input" type="file" accept="image/*" style="display:none" onchange="showJournalImage(event)">
-      <div id="journal-image-preview" style="display:none;margin-top:12px" class="journal-photo">
-        <img id="journal-preview-img" alt="Nytt journalbilde">
-        <strong>Nytt bilde valgt</strong>
-        <p id="journal-preview-name" class="muted"></p>
+      <div class="product-shot" aria-label="Eksempel fra veterinærappen">
+        <div class="window-top"><span></span><span></span><span></span><em>MINIVET · FELTBESØK</em></div>
+        <div class="demo-app-head">
+          <div><small>Pasient</small><strong>Storm</strong><span>Hest · Vallak · Chip kontrollert</span></div>
+          <div class="secure-pill">Sikker sesjon</div>
+        </div>
+        <div class="demo-grid">
+          <div class="demo-card accent"><small>Ansvarlig veterinær</small><strong>Vanlig Vet1</strong><span>Valgt automatisk</span></div>
+          <div class="demo-card"><small>Adresse</small><strong>Gårdsveien 12</strong><span>GPS og veibeskrivelse klar</span></div>
+          <div class="demo-card wide"><small>Dagens journal</small><p>Klinisk undersøkelse gjennomført. Funn, vurdering og videre plan dokumentert.</p><div class="tag-row"><span>2 bilder</span><span>1 behandling</span><span>3 varer fra bil</span></div></div>
+          <div class="demo-card status"><i></i><div><small>Fakturagrunnlag</small><strong>Klart for godkjenning</strong></div></div>
+        </div>
       </div>
-      <div style="margin-top:12px">
-        <button class="btn">Legg til vare</button>
-        <button class="btn green">Lagre behandling</button>
-        <button class="btn">Fakturer</button>
+    </section>
+
+    <section class="proof-strip" aria-label="Produktområder">
+      <div><strong>Journal</strong><span>Ansvar, bilder og historikk</span></div>
+      <div><strong>Feltarbeid</strong><span>GPS, tale og bil-lager</span></div>
+      <div><strong>Økonomi</strong><span>Fakturagrunnlag og EHF-flyt</span></div>
+      <div><strong>Kontroll</strong><span>Backup, logger og tilsyn</span></div>
+    </section>
+
+    <section id="arbeidsflyt" class="section demo-flow">
+      <div class="section-heading">
+        <p class="eyebrow">Klikk deg gjennom</p>
+        <h2>Én pasient. Hele arbeidsflyten.</h2>
+        <p>Demoen bruker kun fiktive opplysninger og gjør ingen endringer i systemet.</p>
       </div>
-    </div>
-    <div class="box">
-      <h3>Bilder til behandlingen</h3>
-      <p class="muted">Legg til ett eller flere bilder for å dokumentere tilstanden og utviklingen.</p>
-    </div>
-  </div>
-</div>
+      <div class="flow-shell">
+        <div class="flow-buttons" role="tablist" aria-label="Demosteg">
+          <button class="flow-button active" type="button" role="tab" aria-selected="true" data-demo-step="0"><b>01</b><span>Kunde og GPS</span></button>
+          <button class="flow-button" type="button" role="tab" aria-selected="false" data-demo-step="1"><b>02</b><span>Journal i felt</span></button>
+          <button class="flow-button" type="button" role="tab" aria-selected="false" data-demo-step="2"><b>03</b><span>Lager og varer</span></button>
+          <button class="flow-button" type="button" role="tab" aria-selected="false" data-demo-step="3"><b>04</b><span>Faktura og EHF</span></button>
+          <button class="flow-button" type="button" role="tab" aria-selected="false" data-demo-step="4"><b>05</b><span>Tilsyn og kontroll</span></button>
+        </div>
+        <article id="demoFlowPanel" class="flow-panel" aria-live="polite"></article>
+      </div>
+    </section>
 
-<div id="treatment-history-view" class="treatment-view">
-  <div class="box">
-    <h2>Tidligere behandlinger</h2>
-    <p class="muted">Klikk på en behandling for å åpne journalnotat, bilder og fakturadetaljer.</p>
-    <div class="history-item" onclick="toggleTreatment('treatment-1')">
-      <div><strong>08.07.2026 – Konsultasjon</strong><br><span class="muted">950 kr</span></div><span>Åpne ▾</span>
-    </div>
-    <div id="treatment-1" class="history-details" style="display:none">
-      <p><strong>Journalnotat:</strong> Klinisk undersøkelse utført. Normal allmenntilstand. Videre oppfølging avtalt.</p>
-      <div class="journal-photo-grid"><div class="journal-photo"><img loading="lazy" decoding="async" src="https://images.pexels.com/photos/6235233/pexels-photo-6235233.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="Bilde fra konsultasjon"><strong>Bilde fra behandlingen</strong></div></div>
-    </div>
-    <div class="history-item" onclick="toggleTreatment('treatment-2')">
-      <div><strong>01.07.2026 – Vaksine</strong><br><span class="muted">780 kr</span></div><span>Åpne ▾</span>
-    </div>
-    <div id="treatment-2" class="history-details" style="display:none">
-      <p><strong>Journalnotat:</strong> Vaksine satt. Ingen reaksjon observert. Ny dose etter anbefalt intervall.</p>
-      <p class="muted">Ingen bilder lagt til.</p>
-    </div>
-  </div>
-</div>
-</section>
-<section id="lager" class="panel"><h1>Lager, varer og biler</h1><div class="grid2"><div class="box"><h3>Varer</h3><table><tr><th>Vare</th><th>Antall</th><th>Min</th></tr><tr><td>Vaksine hund DHPPi</td><td>8</td><td>3</td></tr><tr><td>Sprøyte 5 ml</td><td>40</td><td>20</td></tr><tr><td>Bandasje elastisk</td><td>4</td><td>5 <span class="warn">Lavt</span></td></tr></table><button class="btn green">Importer CSV</button></div><div class="box"><h3>Biler</h3><table><tr><th>Bil</th><th>Regnr</th><th>Veterinær</th></tr><tr><td>Vetbil</td><td>KK44556</td><td>Vanlig Vet1</td></tr><tr><td>Bil nr1</td><td>AB45666</td><td>Anne Grethe</td></tr></table></div></div></section>
-<section id="faktura" class="panel"><h1>Faktura</h1><div class="grid2"><div class="box"><h3>Fakturaoversikt</h3><table><tr><th>Nr</th><th>Kunde</th><th>Status</th><th>Sum</th></tr><tr><td>RIL-1001</td><td>Hilde Jensen</td><td><span class="pill">Klar</span></td><td>1 187,50</td></tr><tr><td>RIL-1002</td><td>Nina Pors</td><td><span class="pill">Sendt</span></td><td>975,00</td></tr></table><button class="btn">Lag PDF</button><button class="btn green">Send faktura</button></div><div class="preview"><h2>Rett i Lomma Veterinær</h2><p>Org.nr 999 999 999 MVA<br>support@rettilomma.com</p><div class="line"></div><h1>FAKTURA</h1><p><b>Kunde:</b> Hilde Jensen<br><b>Fakturanr:</b> RIL-1001</p><table style="color:#111;background:white"><tr><th>Linje</th><th>Beløp</th></tr><tr><td>Konsultasjon standard</td><td>950</td></tr></table><div class="footerline">Betales til Rett i Lomma. Takk for at du bruker våre veterinærtjenester.</div></div></div></section>
-<section id="backup" class="panel"><h1>Backup og gjenoppretting</h1><div class="grid2"><div class="box"><h3>Backup</h3><button class="btn green">Ta backup av alle klinikker</button><button class="btn">Ta backup av valgt klinikk</button><p class="ok">Lagres i Supabase Storage, ikke lokalt.</p></div><div class="box"><h3>Restore</h3><label>Velg backup</label><select><option>manual/alle-klinikker/2026-07-08/vet-backup.json</option></select><label>Velg klinikk å gjenopprette</label><select><option>TESTKLINIKK 1</option><option>MiniVet</option><option>Under Klinikk1</option></select><button class="btn red">Gjenopprett valgt klinikk</button><p class="muted">Restore oppretter klinikken først, deretter brukere, dyreeiere, dyr, journal og lager.</p></div></div></section>
-<section id="profil" class="panel"><h1>Rett i Lomma fakturaprofil</h1><div class="grid2"><div class="box"><label>Firmanavn</label><input value="Rett i Lomma Veterinær"><label>Org.nr</label><input value="999 999 999 MVA"><label>E-post</label><input value="support@rettilomma.com"><label>Logo</label><input type="file"><label>Brevhode</label><textarea rows="5">Rett i Lomma Veterinær\nMobil veterinærtjeneste\nwww.rettilomma.no</textarea><label>Bunntekst</label><textarea rows="5">Betaling skjer til Rett i Lomma. Takk for at du valgte oss.</textarea><button class="btn green">Lagre global profil</button></div><div class="preview"><h2>Rett i Lomma Veterinær</h2><p>Mobil veterinærtjeneste<br>www.rettilomma.no</p><div class="line"></div><p>Denne profilen brukes på alle veterinærfakturaer som global avsender.</p><div class="footerline">Betaling skjer til Rett i Lomma. Takk for at du valgte oss.</div></div></div></section>
-<section id="sikkerhet" class="panel"><h1>Sikkerhet og personvern</h1><div class="cards"><div class="card"><h3>Tilgang</h3><p><strong>SYSADM:</strong> Administrerer system, brukere, lisenser, backup og teknisk drift. Har <strong>ikke</strong> tilgang til pasientjournaler eller personopplysninger.<br><strong>Kjedeadministrator:</strong> Administrerer klinikker og brukere i egen kjede.<br><strong>Klinikkadministrator:</strong> Administrerer egen klinikk og ansatte.<br><strong>Veterinær:</strong> Har tilgang til pasienter og journaler ved egen klinikk basert på rolle og arbeidsoppgaver.</p></div><div class="card"><h3>Journal-logg</h3><p>Åpning av journal kan logges med bruker og tidspunkt.</p></div><div class="card"><h3>Backup</h3><p>Kryptert backup administreres av SYSADM. Innholdet i pasientjournaler er ikke tilgjengelig for SYSADM uten en særskilt autorisert gjenopprettingsprosess.</p></div><div class="card"><h3>GDPR</h3><p>Løsningen følger kravene i GDPR. Personopplysninger behandles sikkert, data lagres i Skandinavia, og all tilgang til journaler kan loggføres.</p></div></div></section>
-</main></div>
-<script>
-const APP_VERSION='vet-mobile-v2-20260714';
-(async()=>{
-  try{
-    if('serviceWorker' in navigator){
-      const regs=await navigator.serviceWorker.getRegistrations();
-      await Promise.all(regs.map(r=>r.unregister()));
-    }
-    if('caches' in window){
-      const keys=await caches.keys();
-      await Promise.all(keys.map(k=>caches.delete(k)));
-    }
-  }catch(e){}
-  try{localStorage.setItem('vet-app-version',APP_VERSION)}catch(e){}
-})();
-const pages=[['oversikt','Hjem'],['pasient','Pasienter'],['journal','Journal'],['faktura','Faktura'],['lager','Lager'],['sikkerhet','Sikkerhet']];
-const menu=document.getElementById('menu');
-const mobileQuery=window.matchMedia('(max-width:1100px)');
-function applyMobileMode(){document.documentElement.classList.toggle('mobile-ui',mobileQuery.matches)}
-applyMobileMode();
-mobileQuery.addEventListener?.('change',applyMobileMode);
-document.querySelectorAll('table').forEach(table=>{if(!table.parentElement.classList.contains('table-scroll')){const wrap=document.createElement('div');wrap.className='table-scroll';table.parentNode.insertBefore(wrap,table);wrap.appendChild(table)}});
-pages.forEach(([id,name])=>{const b=document.createElement('button');b.textContent=name;b.onclick=()=>go(id);b.id='nav_'+id;menu.appendChild(b)});
-function go(id){document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.id==='nav_'+id));const active=document.getElementById('nav_'+id);active?.scrollIntoView({block:'nearest',inline:'center'});window.scrollTo({top:0,behavior:'auto'});history.replaceState(null,'','#'+id)}
-function toggleMore(){const box=document.getElementById('mer-info');box.style.display=box.style.display==='none'||box.style.display===''?'block':'none';}
-function showJournalImage(event){const file=event.target.files&&event.target.files[0];if(!file)return;const img=document.getElementById('journal-preview-img');const wrap=document.getElementById('journal-image-preview');const name=document.getElementById('journal-preview-name');img.src=URL.createObjectURL(file);name.textContent=file.name;wrap.style.display='block';}
+    <section id="sikkerhet" class="section dark-section">
+      <div class="section-heading">
+        <p class="eyebrow">Tilliten må være innebygd</p>
+        <h2>Sikkerhet som kan forklares – og vises.</h2>
+        <p>Ikke bare et passord på forsiden. Rett i Lomma gir klinikken kontroll over hvem som får se hva, og hva som har skjedd.</p>
+      </div>
+      <div class="feature-grid">
+        <article><span class="feature-icon">01</span><h3>Klinikker holdes adskilt</h3><p>Pasienter og journaler knyttes til aktiv klinikk. Roller styrer funksjonene brukeren får tilgang til.</p></article>
+        <article><span class="feature-icon">02</span><h3>Journalåpninger logges</h3><p>Admin kan se hvem som åpnet journaler og når. Endrings- og tilgangsspor gir et bedre kontrollgrunnlag.</p></article>
+        <article><span class="feature-icon">03</span><h3>Journaler forsvinner ikke</h3><p>Journaler settes inaktive eller overføres. Ved sletting av veterinær kan de tildeles en ny ansvarlig eller stå uten veterinær.</p></article>
+        <article><span class="feature-icon">04</span><h3>Integrasjonsnøkler på server</h3><p>Leverandørnøkler sendes til en sikret serverfunksjon og skal ikke lagres i nettleseren.</p></article>
+        <article><span class="feature-icon">05</span><h3>Backup og gjenoppretting</h3><p>Admin kan ta sikkerhetskopi før import eller større endringer, og kontrollere historikken.</p></article>
+        <article><span class="feature-icon">06</span><h3>Passord og biometri</h3><p>Inviterte brukere oppretter passord før appen åpnes. Støttede enheter kan bruke biometrisk kontroll sammen med passord.</p></article>
+      </div>
+    </section>
 
-function showTreatmentView(view){
-  const newView=document.getElementById('new-treatment-view');
-  const historyView=document.getElementById('treatment-history-view');
-  newView.style.display=view==='new'?'block':'none';
-  historyView.style.display=view==='history'?'block':'none';
-  const target=view==='new'?newView:historyView;
-  target.scrollIntoView({behavior:'smooth',block:'start'});
-}
-function toggleTreatment(id){
-  const el=document.getElementById(id);
-  el.style.display=el.style.display==='none'||!el.style.display?'block':'none';
-}
-const initialPage=['pasient','journal','faktura','lager','sikkerhet'].includes(location.hash.slice(1))?location.hash.slice(1):'oversikt';
-go(initialPage);
-</script>
+    <section id="integrasjoner" class="section integration-section">
+      <div class="integration-copy">
+        <p class="eyebrow">Bytt system uten å starte på nytt</p>
+        <h2>Trygg innlesing først.<br>Integrasjoner etterpå.</h2>
+        <p>Klinikken kan forhåndskontrollere kunder, dyr og journaler før noe lagres. Duplikater varsles, eksterne ID-er beholdes og opprinnelig veterinær følger journalen.</p>
+        <div class="check-list">
+          <span>CSV-mal og forhåndsvisning</span>
+          <span>Kontroll av feil før import</span>
+          <span>Sporbar importlogg</span>
+          <span>Tripletex og CSV-eksport</span>
+          <span>EHF via regnskapssystemet</span>
+          <span>Åpent for flere leverandører</span>
+        </div>
+      </div>
+      <div class="integration-board" aria-label="Integrasjonsflyt">
+        <div class="source-stack"><span>Tidligere veterinærsystem</span><span>CSV / strukturert eksport</span><span>Regnskapssystem</span></div>
+        <div class="connector"><i></i><strong>Kontrollert dataflyt</strong><small>validering · duplikatkontroll · logg</small></div>
+        <div class="target-stack"><span>Rett i Lomma</span><span>Tripletex</span><span>Tilsynspakke</span></div>
+      </div>
+    </section>
 
-<div id="build-version" aria-label="Versjon" style="position:fixed;right:8px;bottom:8px;z-index:9999;padding:5px 8px;border-radius:999px;background:#101615e8;border:1px solid #33413f;color:#a9bebc;font:600 11px/1 Arial,sans-serif;box-shadow:0 3px 12px #0006">Veterinær Mobil V2</div>
+    <section class="section outcomes">
+      <div class="section-heading">
+        <p class="eyebrow">Det klinikken faktisk kjøper</p>
+        <h2>Mer enn et journalskjema.</h2>
+      </div>
+      <div class="outcome-grid">
+        <article><h3>Mindre dobbeltarbeid</h3><p>Journal, varer, kjøring og fakturagrunnlag registreres i samme arbeidsflyt.</p></article>
+        <article><h3>Bedre flyt ute</h3><p>GPS, tale til tekst, bilder og bil-lager støtter veterinæren der arbeidet skjer.</p></article>
+        <article><h3>Raskere kontroll</h3><p>Admin får oversikt over brukere, lager, åpne grunnlag, journalspor og dokumentasjon.</p></article>
+        <article><h3>Enklere vekst</h3><p>Klinikker, underklinikker og roller kan organiseres uten at pasientdata blandes.</p></article>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <p class="eyebrow">Klar for en realistisk pilot?</p>
+      <h2>Start med én klinikk, noen brukere og en kontrollert dataimport.</h2>
+      <p>Vi setter opp arbeidsflyten rundt klinikkens faktiske hverdag – og lar teamet teste før full overgang.</p>
+      <div class="hero-actions centered">
+        <a class="button primary" href="mailto:annegrethe@rettilomma.com?subject=Mer%20informasjon%20eller%20pr%C3%B8ve%20Rett%20i%20Lomma%20Veterin%C3%A6r">Send e-post til annegrethe@rettilomma.com for mer info eller prøve</a>
+        <a class="button ghost" href="../brukerveiledning.html">Se brukerveiledningen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>Rett i Lomma Veterinær</span><span>Demo med fiktive data</span><a href="mailto:annegrethe@rettilomma.com">annegrethe@rettilomma.com</a><a href="../veterinaer-login.html">Innlogging</a></footer>
+  <script src="js/demo.js?v=20260719-2"></script>
 </body>
 </html>
